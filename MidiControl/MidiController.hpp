@@ -3,6 +3,7 @@
 #include <string>
 #include <array>
 #include <unordered_map>
+#include <memory>
 
 #include "MidiDevice.hpp"
 
@@ -28,18 +29,20 @@ public:
 		float				value;
 	};
 
-	MidiController(unsigned messageQueueSize = 256);
-	~MidiController();
+							MidiController(unsigned messageQueueSize = 256);
+							~MidiController();
+							
+	double					poll(std::vector<unsigned char> &msg);
+	bool					poll(InputEvent &e);
 
-	double			poll(std::vector<unsigned char> &msg);
-
-	Status			status();
-	std::string	errorString();
+	Status					status();
+	std::string				errorString();
 
 private:
 
-	RtMidiIn*		m_midiIn; // TODO: no pointer
-	std::string		m_errorString;
-	Status			m_status;
-	std::unordered_map<unsigned, std::string> m_ports;
+	std::unique_ptr<RtMidiIn>					m_midiIn;
+	std::string									m_errorString;
+	Status										m_status;
+	MidiDevice									m_activeDevice;
+	std::unordered_map<unsigned, std::string>	m_ports;
 };

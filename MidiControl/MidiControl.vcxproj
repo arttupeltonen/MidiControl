@@ -148,9 +148,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <Text Include="ReadMe.txt" />
-  </ItemGroup>
-  <ItemGroup>
     <ClInclude Include="..\rtmidi-2.1.0\RtMidi.h" />
     <ClInclude Include="MidiController.hpp" />
     <ClInclude Include="MidiDevice.hpp" />

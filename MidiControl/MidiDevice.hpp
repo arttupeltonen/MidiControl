@@ -1,6 +1,7 @@
 #pragma once
 
 #include <string>
+#include <unordered_map>
 #include <array>
 #include <vector>
 
@@ -12,7 +13,7 @@ struct MidiDevice
 		NanoKONTROL2,
 	};
 
-	enum Key
+	enum class Key
 	{
 		TrackLeft = 0,
 		TrackRight,
@@ -75,12 +76,26 @@ struct MidiDevice
 	};
 
 	static const unsigned KeyCount = static_cast<unsigned>(Key::Count);
-	
-	std::string					name;
-	Type						type;
-	std::array<int, KeyCount>	keyMapping;
-
 	static std::vector<MidiDevice> SupportedDevices;
+	
+	MidiDevice()
+	{
+	}
+
+	MidiDevice(std::string name, Type type, std::array<int, KeyCount> keys)
+		: name(name)
+		, type(type)
+	{
+		for (int i = 0; i < static_cast<int>(keys.size()); i++)
+		{
+			int key = keys[i];
+			keyMapping[key] = i;
+		}
+	}
+	
+	std::string							name;
+	Type								type;
+	std::unordered_map<int, int>		keyMapping;
 };
 
 

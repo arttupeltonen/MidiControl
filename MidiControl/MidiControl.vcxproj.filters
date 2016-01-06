@@ -15,9 +15,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="ReadMe.txt" />
-  </ItemGroup>
-  <ItemGroup>
     <ClInclude Include="..\rtmidi-2.1.0\RtMidi.h">
       <Filter>Header Files</Filter>
     </ClInclude>

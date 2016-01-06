@@ -1,6 +1,5 @@
 #include "MidiDevice.hpp"
 
-
 // Define supported devices here
 
 static std::array<int, MidiDevice::KeyCount> inputMappingNanoKontrol2 =
@@ -18,7 +17,6 @@ static std::array<int, MidiDevice::KeyCount> inputMappingNanoKontrol2 =
 	// R keys
 	64, 65, 66, 67, 68, 69, 70, 71
 };
-
 
 std::vector<MidiDevice> MidiDevice::SupportedDevices = 
 {
